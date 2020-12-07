@@ -26,9 +26,6 @@ ListaParaPesquisa = pd.read_excel("ListaParaPesquisaTeste.xlsx")
 ListaParaPesquisa
 len(ListaParaPesquisa)
 
-# Escolher o Firefox
-driver = webdriver.Firefox()
-
 # Loop
 print("Iniciando a Pesquisa")
 for n in range(0,len(ListaParaPesquisa)):
@@ -65,7 +62,8 @@ for n in range(0,len(ListaParaPesquisa)):
                                   'link'])
   
     try:
-           
+        # Escolher o Firefox
+        driver = webdriver.Firefox()   
         # Pesquisa pelo registro de produto (9 dígitos)
         driver.get("https://consultas.anvisa.gov.br/#/medicamentos/")
         time.sleep(5)
@@ -193,7 +191,6 @@ for n in range(0,len(ListaParaPesquisa)):
             i = i + 1
 
     except:
-        #print("Em processo de gravação de dados")
 
         # Criar objeto para leitura e selecionar planilha
         excel_reader = pd.ExcelFile('Resultados.xlsx')
@@ -275,8 +272,9 @@ for n in range(0,len(ListaParaPesquisa)):
                                'link'])
     
         print("Em processo de gravação de dados")
+        driver.quit()
         
     print("Próximo registro")
     
 print("Fim da Gravação")
-quit()
+driver.quit()
