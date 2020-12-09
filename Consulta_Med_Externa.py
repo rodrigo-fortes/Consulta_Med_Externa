@@ -66,20 +66,20 @@ for n in range(0,len(ListaParaPesquisa)):
         driver = webdriver.Firefox()   
         # Pesquisa pelo registro de produto (9 dígitos)
         driver.get("https://consultas.anvisa.gov.br/#/medicamentos/")
-        time.sleep(5)
+        time.sleep(4)
         print(driver.title)
         search_bar = driver.find_element_by_id("txtNumeroRegistro")
         search_bar.clear()
         a = str(ListaParaPesquisa.iloc[n,0])
         search_bar.send_keys(a)
         search_bar.send_keys(Keys.RETURN)
-        time.sleep(3)
+        time.sleep(2)
         print(driver.current_url)
         
         # Mostrar apresentações
         search_2 = driver.find_element_by_xpath('//*[@id="containerTable"]/table/tbody/tr[2]/td[4]')
         search_2.click()
-        time.sleep(8)
+        time.sleep(6)
         print(driver.current_url)
         
         # Mostrar detalhes das apresentações
